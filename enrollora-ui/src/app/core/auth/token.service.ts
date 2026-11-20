@@ -1,8 +1,9 @@
 
 import { Injectable } from '@angular/core';
+import { UserRole } from './auth.models';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TokenService {
 
@@ -17,12 +18,18 @@ export class TokenService {
     return localStorage.getItem(this.TOKEN_KEY);
   }
 
-  setRole(role: string): void {
+  setRole(role: UserRole): void {
     localStorage.setItem(this.ROLE_KEY, role);
   }
 
-  getRole(): string | null {
-    return localStorage.getItem(this.ROLE_KEY);
+  getRole(): UserRole | null {
+    const role = localStorage.getItem(this.ROLE_KEY);
+
+    if (role === 'Administrator' || role === 'Student') {
+      return role;
+    }
+
+    return null;
   }
 
   removeToken(): void {
