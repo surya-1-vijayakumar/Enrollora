@@ -11,10 +11,10 @@ export interface LoginRequest {
   email: string;
   password: string;
 }
-
+export type UserRole = 'Administrator' | 'Student';
 export interface LoginResponse {
   token: string;
-  role: string;
+  role: UserRole;
   name: string;
   email: string;
   expiresAt: string;
