@@ -33,8 +33,13 @@ export class TokenService {
   }
 
   removeToken(): void {
+    // Remove current authentication data
     localStorage.removeItem(this.TOKEN_KEY);
     localStorage.removeItem(this.ROLE_KEY);
+
+    // Remove old authentication data
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
   }
 
   hasToken(): boolean {
