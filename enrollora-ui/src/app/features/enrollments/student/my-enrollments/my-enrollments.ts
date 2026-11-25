@@ -1,3 +1,4 @@
+
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, inject, signal } from '@angular/core';
@@ -42,17 +43,21 @@ export class MyEnrollments implements OnInit {
         },
         error: (error: HttpErrorResponse) => {
           const body = error.error;
+
           this.errorMessage.set(
-            body?.detail || body?.message || body?.title ||
+            body?.detail ||
+            body?.message ||
+            body?.title ||
             'Unable to load your enrollments.',
           );
+
           this.isLoading.set(false);
         },
       });
   }
 
   statusLabel(status: number): string {
-    return status === 1 ? 'Active' : 'Cancelled';
+    return status === 0 ? 'Active' : 'Cancelled';
   }
 
   previousPage(): void {

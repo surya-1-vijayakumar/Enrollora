@@ -1,3 +1,4 @@
+
 <div class="enrollment-page">
   <div class="page-header">
     <div>
@@ -54,8 +55,8 @@
                 <td>
                   <span
                     class="status-badge"
-                    [class.active]="enrollment.status === 1"
-                    [class.cancelled]="enrollment.status !== 1"
+                    [class.active]="enrollment.status === 0"
+                    [class.cancelled]="enrollment.status === 1"
                   >
                     {{ statusLabel(enrollment.status) }}
                   </span>
@@ -71,7 +72,9 @@
           Showing {{ enrollments().length }} of {{ totalRecords() }} enrollments
         </span>
         <div>
-          <button (click)="previousPage()" [disabled]="pageNumber() === 1">Previous</button>
+          <button (click)="previousPage()" [disabled]="pageNumber() === 1">
+            Previous
+          </button>
           <span class="current-page">{{ pageNumber() }} / {{ totalPages() }}</span>
           <button
             (click)="nextPage()"
